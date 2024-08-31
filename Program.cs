@@ -130,16 +130,11 @@ class Program
     static string ConvertToBase64(string text)
     {
         byte[] textBytes = Encoding.UTF8.GetBytes(text);
-        return Convert.ToBase64String(textBytes).Replace("+", "").Replace("/", "").Replace("=", "");
+        return Convert.ToBase64String(textBytes);
     }
 
     static string ConvertFromBase64(string base64Text)
     {
-        int padding = 4 - (base64Text.Length % 4);
-        if (padding != 4)
-        {
-            base64Text = base64Text.PadRight(base64Text.Length + padding, '=');
-        }
         byte[] textBytes = Convert.FromBase64String(base64Text);
         return Encoding.UTF8.GetString(textBytes);
     }
